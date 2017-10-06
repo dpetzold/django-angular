@@ -168,6 +168,11 @@ class NgBoundField(forms.BoundField):
             self._errors_cache = self.form.get_field_errors(self)
         return self._errors_cache
 
+    def html_attrs(self):
+        field_html_mapping = getattr(self.form, 'field_html_mapping', {})
+        field_html_attrs = field_html_mapping.get(self.name, {})
+        return field_html_attrs
+
     def css_classes(self, extra_classes=None):
         """
         Returns a string of space-separated CSS classes for the wrapping element of this input field.
